@@ -1,0 +1,54 @@
+---
+
+argument_specs:
+  main:
+    short_description: Deploys desktop tunings
+    description:
+      - >-
+        Tasks for desktop configuration.
+        Install C(ohmyzsh), setup required services
+        and adjust user gropus.
+
+    author:
+      - charlesrocket
+
+    options:
+      desktop_ohmyzsh:
+        description: Install C(ohmyzsh).
+        type: bool
+        default: false
+
+      desktop_usermount:
+        description: Allow users to mount.
+        type: bool
+        default: true
+
+      desktop_sndiod:
+        description: Enable C(sndiod).
+        type: bool
+        default: true
+
+      desktop_cuse:
+        description: Enable C(cuse).
+        type: bool
+        default: true
+
+      desktop_acpi:
+        description: Enable ACPI driver.
+        type: bool
+        default: false
+
+      desktop_dsbmd:
+        description: Enable C(DSBMD).
+        type: bool
+        default: true
+
+      desktop_seatd:
+        description: Enable C(seatd).
+        type: bool
+        default: true
+
+      desktop_dbus:
+        description: Enable C(dbus).
+        type: bool
+        default: true

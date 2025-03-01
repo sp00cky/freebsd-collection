@@ -1,0 +1,12 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages Intel drivers
+    description:
+      - Enable Intel C(i915kms).
+
+    author:
+      - charlesrocket
+
+    options: {}

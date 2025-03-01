@@ -1,0 +1,42 @@
+---
+
+namespace: charlesrocket
+name: freebsd
+version: 1.12.3
+readme: README.md
+description: FreeBSD collection for workstations/servers
+authors:
+  - charlesrocket
+
+license:
+  - MIT
+
+tags:
+  - system
+  - tools
+  - security
+  - pf
+  - pkg
+  - bastille
+  - emacs
+  - virtualbox
+  - laptop
+  - desktop
+  - server
+
+dependencies:
+  "ansible.posix": ">=2.0.0"
+  "community.general": ">=10.2.0"
+  "charlesrocket.essential": ">=1.4.0"
+
+repository: https://github.com/charlesrocket/freebsd-collection
+documentation: https://charlesrocket.github.io/freebsd-collection
+issues: https://github.com/charlesrocket/freebsd-collection/issues
+build_ignore:
+  - .editorconfig
+  - .github
+  - .gitignore
+  - assets
+  - profiles
+  - molecule
+  - requirements*txt

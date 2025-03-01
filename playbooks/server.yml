@@ -1,0 +1,107 @@
+---
+
+- name: FreeBSD Server
+  hosts: "{{ target | default('all') }}"
+
+  pre_tasks:
+    - name: "Checking user level | {{ ansible_user_id }}"
+      ansible.builtin.assert:
+        msg: Do not run this playbook as root.
+        that: "ansible_user_id != 'root'"
+      tags: always
+
+    - name: "Activating profile | {{ profile }}"
+      ansible.builtin.include_role:
+        name: "charlesrocket.essential.fetch_vars"
+        apply:
+          tags: always
+      vars:
+        fetch_vars_url:
+          "https://raw.githubusercontent.com/charlesrocket/\
+          freebsd-collection/trunk/profiles/{{ profile }}/\
+          {{ profile_version | default('server') }}.yml"
+      when: (profile is defined) and profile is not regex("^\/")
+      tags: always
+
+    - name: "Activating local profile"
+      ansible.builtin.include_role:
+        name: "charlesrocket.essential.fetch_vars"
+        apply:
+          tags: always
+      vars:
+        fetch_vars_url:
+          "{{ profile }}"
+      when: (profile is defined) and profile is regex("^\/")
+      tags: always
+
+  roles:
+    - role: pkg
+      become: true
+      tags: pkg
+
+    - role: sys
+      become: true
+      tags: sys
+
+    - role: mainframe
+      become: true
+      tags: mainframe
+
+    - role: kern_sec
+      when: security_level is defined
+      become: true
+      tags: kern_sec
+
+    - role: pf
+      when: bastille or pf
+      become: true
+      tags: pf
+
+    - role: wg
+      become: true
+      tags: wg
+
+    - role: common
+      tags: common
+
+    - role: charlesrocket.essential.git
+      when: (git or poudriere) or git_helper is defined
+      tags: git
+
+    - role: charlesrocket.essential.dotfiles
+      when: dotfiles_files is defined
+      tags: dotfiles
+
+    - role: accounting
+      become: true
+      tags: accounting
+
+    - role: clamav
+      when: clamav
+      become: true
+      tags: clamav
+
+    - role: bastille
+      when: bastille
+      become: true
+      tags: bastille
+
+    - role: poudriere
+      when: poudriere
+      become: true
+      tags: poudriere
+
+    - role: mfa
+      when: mfa
+      tags: mfa
+
+  post_tasks:
+    - name: Upgrade installed packages
+      community.general.pkgng:
+        name: "*"
+        state: latest
+        autoremove: true
+        cached: false
+      become: true
+      tags: pkg
+      when: upgrade_packages

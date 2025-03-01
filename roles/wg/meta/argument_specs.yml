@@ -1,0 +1,16 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages WireGuard
+    description:
+      - Manage WireGuard module.
+
+    author:
+      - charlesrocket
+
+    options:
+      wg_enabled:
+        description: Enable WireGuard module.
+        type: bool
+        default: false

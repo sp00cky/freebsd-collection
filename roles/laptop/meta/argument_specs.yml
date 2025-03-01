@@ -1,0 +1,21 @@
+---
+
+argument_specs:
+  main:
+    short_description: Deploys laptop tunings
+    description:
+      - Tasks and tunings for laptops.
+
+    author:
+      - charlesrocket
+
+    options:
+      laptop_dock:
+        description: Enable docking station drivers.
+        type: bool
+        default: false
+
+      laptop_thinkpad:
+        description: Enable ThinkPad ACPI drivers.
+        type: bool
+        default: false

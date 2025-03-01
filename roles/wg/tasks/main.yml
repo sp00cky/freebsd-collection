@@ -1,0 +1,8 @@
+---
+
+- name: "WireGuard module | {{ wg_enabled | ternary('enable', 'disable') }}"
+  community.general.sysrc:
+    name: if_wg_load
+    state: present
+    value: "{{ wg_enabled | ternary('YES', 'NO') }}"
+    path: /boot/loader.conf

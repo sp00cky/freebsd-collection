@@ -1,0 +1,117 @@
+---
+
+- name: Ensure video group is present
+  ansible.builtin.user:
+    name: "{{ ansible_user | default(ansible_user_id) }}"
+    groups: video
+    append: true
+
+- name: Install Bibata cursor
+  become: false
+  block:
+    - name: Create cursor directory
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.local/share/icons"
+        state: directory
+        owner: "{{ ansible_user | default(ansible_user_id) }}"
+        group: "{{ ansible_user | default(ansible_user_id) }}"
+        mode: '0700'
+
+    - name: Download Bibata Original (Classic) cursor theme
+      ansible.builtin.get_url:
+        url: "https://github.com/ful1e5/Bibata_Cursor/releases/download/\
+          v2.0.7/Bibata-Original-Classic.tar.xz"
+        dest: /tmp/Bibata-Original-Classic.tar.xz
+        mode: '0700'
+        checksum:
+          sha256:158b2e7e1b7f6d0eec1af80a93172960dd083b652fef7589575ee984673cc468
+      notify: Install Bibata Original Classic
+
+- name: Install ohmyzsh
+  ansible.builtin.shell:
+    cmd: >-
+      sh -c
+      "$(curl -fsSL
+      https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      "" --unattended
+  args:
+    creates: "/home/{{ ansible_user | default(ansible_user_id) }}/.oh-my-zsh"
+  become: false
+  when: desktop_ohmyzsh
+
+- name: "Usermount | {{ desktop_usermount | ternary('enable', 'disable') }}"
+  ansible.posix.sysctl:
+    name: vfs.usermount
+    state: present
+    value: "{{ desktop_usermount | ternary('1', '0') }}"
+
+- name: "{{ desktop_sndiod | ternary('Enable sndio', 'Disable sndio') }}"
+  community.general.sysrc:
+    name: sndiod_enable
+    state: present
+    value: "{{ desktop_sndiod | ternary('YES', 'NO') }}"
+
+- name: "{{ desktop_cuse | ternary('Enable cuse', 'Disable cuse') }}"
+  community.general.sysrc:
+    name: cuse_load
+    state: present
+    value: "{{ desktop_cuse | ternary('YES', 'NO') }}"
+    path: /boot/loader.conf
+
+- name: "ACPI video driver | {{ desktop_acpi | ternary('enable', 'disable') }}"
+  community.general.sysrc:
+    name: kld_list
+    state: "{{ desktop_acpi | ternary('value_present', 'value_absent') }}"
+    value: "acpi_video"
+
+- name: "{{ desktop_dsbmd | ternary('Enable DSBMD', 'Disable DSBMD') }}"
+  community.general.sysrc:
+    name: dsbmd_enable
+    state: present
+    value: "{{ desktop_dsbmd | ternary('YES', 'NO') }}"
+
+- name: "{{ desktop_seatd | ternary('Enable seatd', 'Disable seatd') }}"
+  community.general.sysrc:
+    name: seatd_enable
+    state: present
+    value: "{{ desktop_seatd | ternary('YES', 'NO') }}"
+
+- name: "{{ desktop_dbus | ternary('Enable dbus', 'Disable dbus') }}"
+  community.general.sysrc:
+    name: dbus_enable
+    state: present
+    value: "{{ desktop_dbus | ternary('YES', 'NO') }}"
+
+- name: Enable desktop ruleset
+  community.general.sysrc:
+    name: devfs_system_ruleset
+    state: present
+    value: "desktop"
+
+- name: Configure devices
+  ansible.builtin.blockinfile:
+    path: /etc/devfs.rules
+    marker: "# {mark} DESKTOP BLOCK"
+    block: |
+      [desktop=10]
+      add path 'acd*'      mode 0660 group operator
+      add path 'cd*'       mode 0660 group operator
+      add path 'da*'       mode 0660 group operator
+      add path 'pass*'     mode 0660 group operator
+      add path 'xpt*'      mode 0660 group operator
+      add path 'fd*'       mode 0660 group operator
+      add path 'md*'       mode 0660 group operator
+      add path 'uscanner*' mode 0660 group operator
+      add path 'ugen*'     mode 0660 group operator
+      add path 'usb/*'     mode 0660 group operator
+      add path 'video*'    mode 0660 group operator
+      add path 'cuse*'     mode 0660 group operator
+      add path 'ttyU*'     mode 0660 group operator
+      add path 'dri/*'     mode 0666 group video
+      add path 'drm/*'     mode 0666 group video
+      add path 'lpt*'      mode 0660 group cups
+      add path 'ulpt*'     mode 0660 group cups
+      add path 'unlpt*'    mode 0660 group cups
+    mode: '0644'
+    owner: root
+    create: true

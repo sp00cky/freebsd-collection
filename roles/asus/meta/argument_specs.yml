@@ -1,0 +1,12 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages Asus drivers
+    description:
+      - Enable ASUS WMI Extras
+
+    author:
+      - charlesrocket
+
+    options: {}

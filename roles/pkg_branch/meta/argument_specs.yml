@@ -1,0 +1,19 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages ports/pkg branch
+    description:
+      - Switch to C(latest)/C(quarterly) branch.
+
+    author:
+      - charlesrocket
+
+    options:
+      pkg_branch_name:
+        description: Set C(pkg) branch.
+        type: str
+        default: latest
+        choices:
+          - quarterly
+          - latest

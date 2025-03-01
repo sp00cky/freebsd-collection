@@ -1,0 +1,61 @@
+---
+
+argument_specs:
+  main:
+    short_description: Deploys server tunings
+    description:
+      - Adjust the system for server applications.
+
+    author:
+      - charlesrocket
+
+    options:
+      mainframe_sshd:
+        description: Enable SSH.
+        type: bool
+        default: true
+
+      mainframe_ip_random_id:
+        description: Random IP packet IDs.
+        type: bool
+        default: true
+
+      mainframe_nolocaltimewait:
+        description: Tune loopback interface.
+        type: bool
+        default: true
+
+      mainframe_ip_process_options:
+        description: Process IP options.
+        type: bool
+        default: false
+
+      mainframe_net_blackhole:
+        description: Activate C(blackhole).
+        type: bool
+        default: true
+
+      mainframe_path_mtu_discovery:
+        description: Enable PMTUD.
+        type: bool
+        default: false
+
+      mainframe_tcp_always_keepalive:
+        description: Detect dead TCP connections.
+        type: bool
+        default: false
+
+      mainframe_drop_synfin:
+        description: Drop SYN/FIN packets.
+        type: bool
+        default: true
+
+      mainframe_ahci:
+        description: Enable AHCI.
+        type: bool
+        default: true
+
+      mainframe_icmp_may_rst:
+        description: Enable ICMP RST.
+        type: bool
+        default: true

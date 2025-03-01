@@ -1,0 +1,19 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages process accounting
+    description:
+      - Deploy process accounting service.
+
+    author:
+      - charlesrocket
+
+    options:
+      accounting_enabled:
+        description: Enable/disable process accounting.
+        type: bool
+        default: true
+        choices:
+          - true
+          - false

@@ -1,0 +1,26 @@
+---
+
+argument_specs:
+  main:
+    short_description: Installs Emacs
+    description:
+      - Build and deploy Doom Emacs using local configuration.
+
+    author:
+      - charlesrocket
+
+    options:
+      emacs_wayland:
+        description: Use Wayland build.
+        type: bool
+        default: false
+
+      emacs_languagetool:
+        description: Deploy LanguageTool.
+        type: bool
+        default: false
+
+      emacs_languagetool_path:
+        description: LanguageTool path.
+        type: str
+        default: '~/.languagetool'

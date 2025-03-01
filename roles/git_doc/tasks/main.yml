@@ -1,0 +1,42 @@
+---
+
+- name: Check doc directory status
+  ansible.builtin.stat:
+    path: /usr/doc/.git
+  register: doc_status
+
+- name: Prepare doc directory
+  ansible.builtin.file:
+    path: /usr/doc
+    state: directory
+    owner: root
+    group: wheel
+    mode: '0755'
+  become: true
+  when: doc_status.stat.exists is false
+
+- name: Scan doc directory
+  ansible.builtin.find:
+    path: /usr/doc
+    file_type: any
+    hidden: true
+  register: doc_list
+  when: doc_status.stat.exists is false
+
+- name: Clean doc directory
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ doc_list.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  become: true
+  when: doc_status.stat.exists is false
+
+- name: Install doc
+  ansible.builtin.git:
+    repo: 'https://git.freebsd.org/doc.git'
+    dest: /usr/doc
+    version: main
+  become: true
+  when: doc_status.stat.exists is false

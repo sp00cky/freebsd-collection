@@ -1,0 +1,12 @@
+---
+
+- name: "/etc/motd.sh information"
+  ansible.builtin.stat:
+    path: "/etc/motd.sh"
+  register: test_file
+
+- name: "Check /etc/motd.sh"
+  ansible.builtin.assert:
+    that:
+      - test_file.stat.exists
+      - test_file.stat.mode == '0700'

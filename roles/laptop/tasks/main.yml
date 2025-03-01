@@ -1,0 +1,55 @@
+---
+
+- name: Suspend on lid close
+  ansible.posix.sysctl:
+    name: hw.acpi.lid_switch_state
+    state: present
+    value: 'S3'
+
+- name: Enable powerd
+  community.general.sysrc:
+    name: powerd_enable
+    value: "YES"
+    state: present
+
+- name: Tune powerd
+  community.general.sysrc:
+    name: powerd_flags
+    value: "-a hiadaptive -b adaptive"
+    state: present
+
+- name: Tune C-states | performance
+  community.general.sysrc:
+    name: performance_cx_lowest
+    value: "Cmax"
+    state: present
+
+- name: Tune C-states | economy
+  community.general.sysrc:
+    name: economy_cx_lowest
+    value: "Cmax"
+    state: present
+
+- name:
+    "ThinkPad drivers | {{ laptop_thinkpad | ternary('enable', 'disable') }}"
+  community.general.sysrc:
+    name: acpi_ibm_load
+    state: present
+    value: "{{ laptop_thinkpad | ternary('YES', 'NO') }}"
+    path: /boot/loader.conf
+
+- name:
+    "Dock drivers | {{ laptop_dock | ternary('enable', 'disable') }}"
+  community.general.sysrc:
+    name: acpi_dock_load
+    state: present
+    value: "{{ laptop_dock | ternary('YES', 'NO') }}"
+    path: /boot/loader.conf
+
+- name: Install Intel Wireless 8260/8265 driver
+  community.general.pkgng:
+    state: present
+    name: iwmbt-firmware
+    autoremove: true
+    cached: false
+  when: laptop_thinkpad

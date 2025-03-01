@@ -1,0 +1,21 @@
+---
+
+argument_specs:
+  main:
+    short_description: Installs Bastille
+    description:
+      - Deploy C(bastille) service.
+
+    author:
+      - charlesrocket
+
+    options:
+      bastille_zfs_enable:
+        description: Enable ZFS.
+        type: bool
+        default: false
+
+      bastille_zfs_zpool:
+        description: ZFS zpool name.
+        type: str
+        default: zroot

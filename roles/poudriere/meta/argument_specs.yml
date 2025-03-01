@@ -1,0 +1,36 @@
+---
+
+argument_specs:
+  main:
+    short_description: Installs Poudriere
+    description:
+      - Install and configure C(poudriere) service.
+
+    author:
+      - charlesrocket
+
+    options:
+      poudriere_distfiles:
+        description: C(distfiles) location.
+        type: str
+        default: /usr/ports/distfiles
+
+      poudriere_host:
+        description: FreeBSD mirror.
+        type: str
+        default: ftp://ftp.freebsd.org
+
+      poudriere_zfs:
+        description: Enable ZFS.
+        type: bool
+        default: false
+
+      poudriere_zpool:
+        description: ZFS zpool name.
+        type: str
+        default: zroot
+
+      poudriere_zrootfs:
+        description: ZFS rootfs location.
+        type: str
+        default: /usr/local/poudriere

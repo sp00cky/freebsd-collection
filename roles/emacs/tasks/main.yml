@@ -1,0 +1,44 @@
+---
+
+- name:
+    "Ensure Emacs is installed | {{ emacs_wayland | ternary('Wayland', 'X') }}"
+  community.general.pkgng:
+    state: present
+    name: "{{ emacs_wayland | ternary('emacs-wayland', 'emacs') }}"
+    autoremove: true
+    cached: false
+  become: true
+  notify:
+    - Synchronize Doom Emacs
+
+- name: Clone Doom Emacs
+  ansible.builtin.git:
+    repo: 'https://github.com/hlissner/doom-emacs'
+    dest: ~/.emacs.d
+    version: master
+    depth: 1
+    update: false
+  notify:
+    - Synchronize Doom Emacs
+
+- name: Install LanguageTool
+  when: emacs_languagetool
+  become: false
+  block:
+    - name: Get LanguageTool tags
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/languagetool-org/languagetool/tags
+        return_content: true
+      register: emacs_lt_tags
+
+    - name: "Download LanguageTool {{ emacs_lt_tags.json[0].name }}"
+      ansible.builtin.get_url:
+        url: "https://languagetool.org/download/LanguageTool-\
+          {{ emacs_lt_tags.json[0].name | replace('v', '') }}.zip"
+        dest: "/tmp/languagetool-\
+          {{ emacs_lt_tags.json[0].name | replace('v', '') }}.zip"
+        mode: '0740'
+      notify:
+        - Prepare LanguageTool destination
+        - Extract LanguageTool
+        - "Deploy LanguageTool: {{ emacs_languagetool_path }}"

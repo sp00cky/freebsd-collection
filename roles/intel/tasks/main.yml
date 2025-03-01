@@ -1,0 +1,16 @@
+---
+
+- name: Ensure drm-kmod is installed
+  community.general.pkgng:
+    state: present
+    name: drm-kmod
+    autoremove: true
+    cached: false
+  become: true
+
+- name: Enable Intel driver
+  community.general.sysrc:
+    name: kld_list
+    value: "i915kms"
+    state: value_present
+  become: true

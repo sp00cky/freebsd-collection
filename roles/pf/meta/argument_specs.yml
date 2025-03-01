@@ -1,0 +1,16 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages PF
+    description:
+      - Deploy C(pf) configurations.
+
+    author:
+      - charlesrocket
+
+    options:
+      pf_bastille:
+        description: Deploy C(pf) configuration for C(bastille).
+        type: bool
+        default: false

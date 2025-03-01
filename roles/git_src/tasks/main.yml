@@ -1,0 +1,42 @@
+---
+
+- name: Check src directory status
+  ansible.builtin.stat:
+    path: /usr/src/.git
+  register: src_status
+
+- name: Prepare src directory
+  ansible.builtin.file:
+    path: /usr/src
+    state: directory
+    owner: root
+    group: wheel
+    mode: '0755'
+  become: true
+  when: src_status.stat.exists is false
+
+- name: Scan src directory
+  ansible.builtin.find:
+    path: /usr/src
+    file_type: any
+    hidden: true
+  register: src_list
+  when: src_status.stat.exists is false
+
+- name: Clean src directory
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ src_list.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  become: true
+  when: src_status.stat.exists is false
+
+- name: Install src
+  ansible.builtin.git:
+    repo: 'https://git.freebsd.org/src.git'
+    dest: /usr/src
+    version: main
+  become: true
+  when: src_status.stat.exists is false

@@ -1,0 +1,27 @@
+---
+
+- name: Ensure VirtualBox is installed
+  community.general.pkgng:
+    state: present
+    name: virtualbox-ose
+    autoremove: true
+    cached: false
+
+- name: Add vboxusers group
+  ansible.builtin.user:
+    name: "{{ ansible_user | default(ansible_user_id) }}"
+    groups: vboxusers
+    append: true
+
+- name: Enable virtualbox driver
+  community.general.sysrc:
+    name: vboxdrv_load
+    value: "YES"
+    state: present
+    path: /boot/loader.conf
+
+- name: Enable vboxnet driver
+  community.general.sysrc:
+    name: vboxnet_enable
+    state: present
+    value: "YES"

@@ -1,0 +1,17 @@
+---
+
+- name: Ensure QMK is installed
+  community.general.pkgng:
+    state: present
+    name: py311-qmk
+    autoremove: true
+    cached: false
+  become: true
+
+- name: Clone QMK firmware
+  ansible.builtin.git:
+    repo: "https://github.com/{{ qmk_github }}/qmk_firmware"
+    dest: ~/src/qmk_firmware
+    version: master
+    depth: 1
+  changed_when: false

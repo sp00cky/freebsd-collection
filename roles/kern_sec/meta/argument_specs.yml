@@ -1,0 +1,21 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages kernel security level
+    description:
+      - Enable and adjust kernel security level.
+
+    author:
+      - charlesrocket
+
+    options:
+      kern_sec_level:
+        description: Set kernel security level.
+        type: str
+        default: -1
+        choices:
+          - "-1"
+          - "1"
+          - "2"
+          - "3"

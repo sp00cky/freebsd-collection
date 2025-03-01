@@ -1,0 +1,12 @@
+---
+
+mainframe_sshd: true
+mainframe_ip_random_id: true
+mainframe_ip_process_options: false
+mainframe_nolocaltimewait: true
+mainframe_net_blackhole: true
+mainframe_path_mtu_discovery: false
+mainframe_tcp_always_keepalive: false
+mainframe_drop_synfin: true
+mainframe_ahci: true
+mainframe_icmp_may_rst: false

@@ -1,0 +1,12 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages ports source
+    description:
+      - Deploy FreeBSD C(ports) source with git.
+
+    author:
+      - charlesrocket
+
+    options: {}

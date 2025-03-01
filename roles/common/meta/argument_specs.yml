@@ -1,0 +1,43 @@
+---
+
+argument_specs:
+  main:
+    short_description: Manages user, installs MOTD/custom configs
+    description:
+      - >-
+        Manage user's account, install MOTD and deploy
+        configuration files for C(make), C(lynis).
+
+    author:
+      - charlesrocket
+
+    options:
+      common_lynis_profile:
+        description: Lynis profile to deploy.
+        type: str
+        default: server
+        choices:
+          - server
+          - desktop
+
+      make_config:
+        description: List of C(make) options.
+        type: list
+        elements: str
+
+      common_motd_layout:
+        description: MOTD layout.
+        type: str
+        default: default
+        choices:
+          - default
+          - status
+
+      user_shell:
+        description: User's shell.
+        type: str
+
+      user_groups:
+        description: List of user's groups.
+        type: list
+        elements: str

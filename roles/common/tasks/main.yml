@@ -1,0 +1,72 @@
+---
+
+- name: Edit user | shell
+  ansible.builtin.user:
+    name: "{{ ansible_user | default(ansible_user_id) }}"
+    shell: "{{ user_shell }}"
+  when:
+    - user_shell is defined
+  become: true
+
+- name: Edit user | groups
+  ansible.builtin.user:
+    name: "{{ ansible_user | default(ansible_user_id) }}"
+    groups: "{{ user_groups }}"
+    append: true
+  when:
+    - user_groups is defined
+  become: true
+
+- name: "Copy MOTD | {{ common_motd_layout }}"
+  ansible.builtin.copy:
+    src: >-
+      motd-{{ common_motd_layout }}.sh
+    dest: /etc/motd.sh
+    owner: root
+    mode: '0700'
+    remote_src: false
+  become: true
+
+- name: Install MOTD
+  ansible.builtin.cron:
+    name: "Update MOTD"
+    special_time: reboot
+    job: "/etc/motd.sh > /etc/motd.template"
+    user: root
+    state: present
+  become: true
+
+- name: Ensure MOTD dependencies are installed
+  community.general.pkgng:
+    state: present
+    name: "{{ motd_deps }}"
+    autoremove: true
+    cached: false
+  vars:
+    motd_deps:
+      - figlet
+      - lolcat
+  become: true
+
+- name: Configure make
+  ansible.builtin.template:
+    src: make.conf.j2
+    dest: /etc/make.conf
+    owner: root
+    group: wheel
+    mode: '0644'
+  become: true
+  when:
+    - make_config is defined
+
+- name: "Copy Lynis profile | {{ common_lynis_profile }}"
+  ansible.builtin.copy:
+    src: >-
+      {{ common_lynis_profile }}.prf
+    dest: /usr/local/etc/lynis/custom.prf
+    owner: root
+    mode: '0644'
+    remote_src: false
+  become: true
+  when:
+    - "'lynis' in ansible_facts.packages"

@@ -1,0 +1,16 @@
+---
+
+argument_specs:
+  main:
+    short_description: Installs QMK
+    description:
+      - Deploy QMK source and tools.
+
+    author:
+      - charlesrocket
+
+    options:
+      qmk_github:
+        description: Set GitHub username.
+        type: str
+        default: qmk
