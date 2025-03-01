@@ -17,7 +17,7 @@
           tags: always
       vars:
         fetch_vars_url:
-          "https://raw.githubusercontent.com/charlesrocket/\
+          "https://raw.githubusercontent.com/sp00cky/\
           freebsd-collection/trunk/profiles/{{ profile }}/\
           {{ profile_version | default('station') }}.yml"
       when: (profile is defined) and profile is not regex("^\/")
