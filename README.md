@@ -25,5 +25,5 @@ See [profiles](https://charlesrocket.github.io/freebsd-collection/docsite/profil
 # run as user
 ansible-galaxy collection install charlesrocket.freebsd
 ansible-playbook charlesrocket.freebsd.station -c \
-    local -i "localhost," -e "profile=charlesrocket"
+    local -i "localhost," -e "profile=bigmac"
 ```

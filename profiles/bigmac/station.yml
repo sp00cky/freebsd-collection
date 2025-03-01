@@ -1,18 +1,18 @@
 ---
 
 # Dotfiles
-dotfiles_repo: https://github.com/sp00cky/dotfiles.git
-dotfiles_repo_version: main
+dotfiles_repo: https://github.com/charlesrocket/dotfiles.git
+dotfiles_repo_version: master
 dotfiles_repo_force: true
 dotfiles_repo_local_destination: ~/src/dotfiles
 dotfiles_files:
   - .config/Kvantum/kvantum.kvconfig # Kvantum: SVG-based theme engine for Qt
-  - .config/aria2/aria2.conf # aria2: Lightweight multi-protocol & multi-source command-line download utility
+  # - .config/aria2/aria2.conf # aria2: Lightweight multi-protocol & multi-source command-line download utility
   - .config/alacritty.toml # alacritty: GPU-accelerated terminal emulator
-  - .config/btop/btop.conf # btop: Resource monitor that shows usage and stats
-  - .config/doom/config.el # Doom Emacs: Configuration for Emacs
-  - .config/doom/init.el # Doom Emacs: Initialization file for Emacs
-  - .config/doom/packages.el # Doom Emacs: Package configuration for Emacs
+  # - .config/btop/btop.conf # btop: Resource monitor that shows usage and stats
+  # - .config/doom/config.el # Doom Emacs: Configuration for Emacs
+  # - .config/doom/init.el # Doom Emacs: Initialization file for Emacs
+  # - .config/doom/packages.el # Doom Emacs: Package configuration for Emacs
   - .config/dorst/config.toml # dorst: Configuration management tool
   - .config/dunst/dunstrc # dunst: Lightweight and customizable notification daemon
   - .config/eww/eww.scss # eww-wayland: ElKowar's Wacky Widgets for Wayland
@@ -30,15 +30,15 @@ dotfiles_files:
   - .config/git/config # git: Distributed version control system
   - .config/hypr/hyprland.conf # hyprland: Dynamic tiling Wayland compositor
   - .config/mc/ini # mc: Midnight Commander, a visual file manager
-  - .config/qmk/qmk.ini # qmk: Quantum Mechanical Keyboard firmware
+  # - .config/qmk/qmk.ini # qmk: Quantum Mechanical Keyboard firmware
   - .config/qt5ct/qt5ct.conf # qt5ct: Qt5 Configuration Tool
   - .config/tofi/config # tofi: Simple and fast launcher for Wayland
-  - .config/transmission/settings.json # transmission: Lightweight BitTorrent client
+  # - .config/transmission/settings.json # transmission: Lightweight BitTorrent client
   - .config/wlogout/layout # wlogout: Logout menu for Wayland
   - .config/wlogout/style.css # wlogout: Logout menu for Wayland
   - .shrc # Shell configuration file
   - .zshrc # zsh: UNIX shell (command interpreter)
-  - bin/devmode # Custom script for development mode
+  # - bin/devmode # Custom script for development mode
   - bin/hyprstart # Custom script for starting Hyprland
   - bin/lowpowermode # Custom script for toggling low power mode
 
@@ -69,7 +69,6 @@ desktop_acpi: true
 asus: false
 amd: false
 clamav: true
-bastille: true
 desktop_ohmyzsh: true
 intel: true
 sys_microcode_update: true
@@ -84,12 +83,13 @@ emacs_wayland: true
 
 wg_enabled: true
 
+bastille: true
 bastille_zfs_enable: true
 bastille_zfs_zpool: zroot
 sys_ipv6_support: true
 tethering_apple: true
 timezone: America/Los_Angeles
-qmk_github: charlesrocket
+# qmk_github: charlesrocket
 
 sys_boot_verbose: true
 sys_coretemp: true
@@ -134,106 +134,128 @@ pkgng_packages:
   - droid-fonts-ttf # Droid family of fonts
   - gnome-icon-theme # GNOME icon theme
   - gnome-icon-theme-extras # Extra GNOME icons
+  - Kvantum # SVG-based theme engine for Qt
   - material-icons-ttf # Material Design icons by Google
   - nerd-fonts # Developer targeted fonts with a high number of glyphs
   - noto-emoji # Google's Noto emoji fonts
   - plex-ttf # Monospaced font family for development
-
-  # Development Tools
-  - arduino-core # Arduino core libraries and tools
-  - cmake # Cross-platform make system
-  - crystal # Programming language with Ruby-like syntax
-  - diffutils # File comparison utilities
-  - direnv # Environment switcher for the shell
-  - editorconfig-core-c # EditorConfig core library written in C
-  - gcc # GNU Compiler Collection
-  - git-cliff # Highly customizable changelog generator
-  - git-credential-oauth # Git credential helper for OAuth
-  - gitg # GTK-based git repository viewer
-  - glslang # OpenGL and OpenGL ES shader front end and validator
-  - gmake # GNU version of 'make' utility
-  - hs-darcs # Distributed, interactive, smart revision control system
-  - hs-ShellCheck # Shell script analysis tool
-  - jq # Lightweight and flexible command-line JSON processor
-  - llvm # Collection of modular and reusable compiler and toolchain technologies
-  - meson # High performance build system
-  - ninja # Small build system with a focus on speed
-  - perl5 # Practical Extraction and Report Language
-  - pijul # Version control system based on patches
-  - portfmt # Format FreeBSD ports according to style guidelines
-  - portlint # Verifier for FreeBSD port directory
-  - python3 # Interpreted object-oriented programming language
   - qt5-style-plugins # Additional style plugins for Qt5
   - qt5ct # Qt5 Configuration Tool
-  - rbenv # Ruby version manager
-  - ripgrep # Line-oriented search tool
-  - ruby # Object-oriented interpreted scripting language
-  - rust # Safe, concurrent, practical language
-  - rust-analyzer # Rust compiler front-end for IDEs
-  - scdoc # Man page generator for simple markdown-like source files
-  - shards # Dependency manager for the Crystal language
-  - unibilium # Terminfo parsing library
-  - uarduno # USBasp compatible programmer for Arduino
-  - zig # General-purpose programming language and toolchain
-  - zls # Zig Language Server
+
+  # Development Tools
+  # - arduino-core # Arduino core libraries and tools
+  # - cmake # Cross-platform make system
+  # - crystal # Programming language with Ruby-like syntax
+  # - diffutils # File comparison utilities
+  # - direnv # Environment switcher for the shell
+  # - editorconfig-core-c # EditorConfig core library written in C
+  # - gcc # GNU Compiler Collection
+  # - glslang # OpenGL and OpenGL ES shader front end and validator
+  # - gmake # GNU version of 'make' utility
+  # - hs-darcs # Distributed, interactive, smart revision control system
+  # - hs-ShellCheck # Shell script analysis tool
+  # - jq # Lightweight and flexible command-line JSON processor
+  # - llvm # Collection of modular and reusable compiler and toolchain technologies
+  # - meson # High performance build system
+  # - ninja # Small build system with a focus on speed
+  # - perl5 # Practical Extraction and Report Language
+  # - pijul # Version control system based on patches
+  # - portfmt # Format FreeBSD ports according to style guidelines
+  # - portlint # Verifier for FreeBSD port directory
+  - python3 # Interpreted object-oriented programming language
+  # - rbenv # Ruby version manager
+  # - ripgrep # Line-oriented search tool
+  # - ruby # Object-oriented interpreted scripting language
+  # - rust # Safe, concurrent, practical language
+  # - rust-analyzer # Rust compiler front-end for IDEs
+  # - scdoc # Man page generator for simple markdown-like source files
+  # - shards # Dependency manager for the Crystal language
+  # - unibilium # Terminfo parsing library
+  # - uarduno # USBasp compatible programmer for Arduino
+  # - vagrant # Tool for building and distributing virtualized development environments
+  # - zig # General-purpose programming language and toolchain
+  # - zls # Zig Language Server
+
+  # Git Utilities
+  # - git-cliff # Highly customizable changelog generator
+  # - git-credential-oauth # Git credential helper for OAuth
+  # - gitg # GTK-based git repository viewer
+  # - tig # Text-mode interface for Git
 
   # Utilities
   - alacritty # GPU-accelerated terminal emulator
-  - aria2 # Download utility supporting HTTP(S), FTP, BitTorrent, and Metalink
+  - aspell # Spell checker
   - base64 # Base64 encoding and decoding utility
   - bash # GNU Project's Bourne Again SHell
-  - btop # Resource monitor that shows usage and stats
+  # - btop # Resource monitor that shows usage and stats
   - bzip2 # Block-sorting file compressor
   - curl # Command line tool and library for transferring data with URLs
   - doas # Simple sudo replacement
   - dsbmc-cli # Command-line client for DSBMD
   - dsbmd # Disk and device media daemon
-  - fd-find # Simple, fast, and user-friendly alternative to 'find'
-  - fzf # Command-line fuzzy finder
-  - gnuls # GNU version of 'ls' command
+  - dunst # Lightweight and customizable notification daemon
+  - en-aspell # American English dictionary for aspell
+  # - fd-find # Simple, fast, and user-friendly alternative to 'find'
+  # - fzf # Command-line fuzzy finder
+  # - gawk # GNU version of 'awk' pattern scanning and processing language
+  - gedit # GNOME text editor
+  - gnome-keyring # GNOME password and secret manager
+  # - gnuplot # Command-line driven graphing utility
+  # - gnuls # GNU version of 'ls' command
+  # - gomuks # Matrix client for the terminal
   - gzip # Compression utility designed to be a replacement for 'compress'
   - htop # Interactive process viewer
   - hwstat # Utility to display hardware status
   - iftop # Display bandwidth usage on an interface by host
   - less # Pager program similar to 'more'
   - libsecret # Library for storing and retrieving passwords and secrets
-  - mp3blaster # Text-based mp3 player
-  - pv # Pipe viewer
-  - pwgen # Password generator
+  # - mp3blaster # Text-based mp3 player
+  # - pcsc-tools # Tools for smart cards and smart card readers
+  # - pv # Pipe viewer
+  # - pwgen # Password generator
   - screen # Multi-screen window manager
-  - socat # Multipurpose relay for bidirectional data transfer
-  - tmux # Terminal multiplexer
+  # - tmux # Terminal multiplexer
   - tree # Display directories as trees (with optional color/HTML output)
   - unzip # List, test, and extract compressed files in a ZIP archive
-  - vagrant # Tool for building and distributing virtualized development environments
   - valgrind # Memory debugging and profiling tool
-  - wget # Retrieve files from the web using HTTP and FTP
-  - whois # Whois client
   - zsh # UNIX shell (command interpreter)
 
   # Security
-  - chkrootkit # Rootkit detection tool
-  - gnupg # Complete and free implementation of the OpenPGP standard
-  - hashcat # Advanced password recovery utility
-  - imhex # Hex editor for reverse engineers and programmers
-  - lynis # Security auditing tool for Unix-based systems
-  - masscan # TCP port scanner, spews SYN packets asynchronously
-  - nikto # Web server scanner
-  - nmap # Network exploration tool and security/port scanner
-  - rkhunter # Rootkit Hunter scans for rootkits, backdoors, and local exploits
-  - zmap # Network scanner for Internet-wide network studies
+  # - chkrootkit # Rootkit detection tool
+  # - gnupg # Complete and free implementation of the OpenPGP standard
+  # - gobuster # Directory and file brute-forcing tool
+  # - hashcat # Advanced password recovery utility
+  # - httping # Ping-like tool for HTTP requests
+  # - imhex # Hex editor for reverse engineers and programmers
+  # - lynis # Security auditing tool for Unix-based systems
+  # - masscan # TCP port scanner, spews SYN packets asynchronously
+  # - nikto # Web server scanner
+  # - nmap # Network exploration tool and security/port scanner
+  # - rkhunter # Rootkit Hunter scans for rootkits, backdoors, and local exploits
+  # - zmap # Network scanner for Internet-wide network studies
 
   # Networking
-  - ffuf # Fast web fuzzer written in Go
-  - netcat # Network utility for reading from and writing to network connections
+  # - aria2 # Download utility supporting HTTP(S), FTP, BitTorrent, and Metalink
+  # - ffuf # Fast web fuzzer written in Go
+  # - netcat # Network utility for reading from and writing to network connections
+  # - socat # Multipurpose relay for bidirectional data transfer
+  - wget # Retrieve files from the web using HTTP and FTP
+  - whois # Whois client
+
+  # Web
+  # - chromium # Web browser from Google
+  - firefox-esr # Web browser from Mozilla
+  # - lynx # Text-based web browser
+  # - filezilla # Fast and reliable cross-platform FTP, FTPS, and SFTP client
+  # - transmission # Lightweight BitTorrent client
 
   # Multimedia
-  - blender # 3D modeling, animation, rendering, and post-production
+  # - blender # 3D modeling, animation, rendering, and post-production
   - epdfview # Lightweight PDF document viewer using Poppler and GTK+
-  - filezilla # Fast and reliable cross-platform FTP, FTPS, and SFTP client
-  - gimp # GNU Image Manipulation Program
+  # - gimp # GNU Image Manipulation Program
   - imv # Image viewer for Wayland and X11
-  - mpv # Media player based on MPlayer and mplayer2
+  # - mpv # Media player based on MPlayer and mplayer2
+  # - oxipng # PNG optimizer to reduce image file sizes
   - vlc # Media player and streaming server
 
   # Wayland
@@ -251,12 +273,25 @@ pkgng_packages:
   - xwayland # X server running as a Wayland client
 
   # Email
-  - claws-mail # Lightweight and fast email client
-  - claws-mail-pgp # PGP plugin for Claws Mail
+  # - claws-mail # Lightweight and fast email client
+  # - claws-mail-pgp # PGP plugin for Claws Mail
+
+  # Filemanager
+  - thunar # Modern file manager for Xfce
+  - mc # Midnight Commander, a visual file manager
+
+  # Filesystem
+  - exfat-utils # Utilities for exFAT file system
+  - fusefs-exfat # FUSE driver for exFAT file system
+  - fusefs-ext2 # FUSE driver for ext2 file system
+  - fusefs-hfsfuse # FUSE driver for HFS+ file system
+  - fusefs-lkl # FUSE driver for Linux kernel library
+  - fusefs-ntfs # FUSE driver for NTFS file system
+  - fusefs-simple-mtpfs # FUSE driver for MTP devices
 
   # Miscellaneous
   - consolekit2 # Framework for defining and tracking users, login sessions, and seats
-  - seahorse # GNOME application for managing encryption keys
+  # - seahorse # GNOME application for managing encryption keys
   - sndio # Small audio and MIDI framework
   - virtual_oss # Virtual OSS multi-channel sound server
-  - zola # Static site generator
+  # - zola # Static site generator
