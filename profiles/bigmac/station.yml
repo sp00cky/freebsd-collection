@@ -215,6 +215,7 @@ pkgng_packages:
   - chkrootkit # Rootkit detection tool
   - gnupg # Complete and free implementation of the OpenPGP standard
   - hashcat # Advanced password recovery utility
+  - imhex # Hex editor for reverse engineers and programmers
   - lynis # Security auditing tool for Unix-based systems
   - masscan # TCP port scanner, spews SYN packets asynchronously
   - nikto # Web server scanner
@@ -231,7 +232,6 @@ pkgng_packages:
   - epdfview # Lightweight PDF document viewer using Poppler and GTK+
   - filezilla # Fast and reliable cross-platform FTP, FTPS, and SFTP client
   - gimp # GNU Image Manipulation Program
-  - imhex # Hex editor for reverse engineers and programmers
   - imv # Image viewer for Wayland and X11
   - mpv # Media player based on MPlayer and mplayer2
   - vlc # Media player and streaming server
