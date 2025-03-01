@@ -1,8 +1,8 @@
 ---
 
 # Dotfiles
-dotfiles_repo: https://github.com/charlesrocket/dotfiles.git
-dotfiles_repo_version: master
+dotfiles_repo: https://github.com/sp00cky/dotfiles.git
+dotfiles_repo_version: main
 dotfiles_repo_force: true
 dotfiles_repo_local_destination: ~/src/dotfiles
 dotfiles_files:
