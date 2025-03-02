@@ -5,6 +5,7 @@ argument_specs:
     short_description: Installs QMK
     description:
       - Deploy QMK source and tools.
+      - QMK Firmware for keyboards using AVR and ARM processors.
 
     author:
       - charlesrocket

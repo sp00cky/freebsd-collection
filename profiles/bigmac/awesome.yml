@@ -1,5 +1,9 @@
 ---
 
+################################################
+# Config for bigmac freeBSD awesomeWM desktop  #
+################################################
+
 ########################
 # role: pkg (Packages) #
 ########################
@@ -11,6 +15,7 @@ pkgng_packages:
   - adwaita-qt5 # Adwaita theme for Qt5 applications
   - apl385 # APL385 Unicode font
   - droid-fonts-ttf # Droid family of fonts
+  - font-awesome # Iconic font designed for Bootstrap
   - gnome-icon-theme # GNOME icon theme
   - gnome-icon-theme-extras # Extra GNOME icons
   - Kvantum # SVG-based theme engine for Qt
@@ -25,7 +30,7 @@ pkgng_packages:
   # Development Tools #
   #####################
   # - arduino-core # Arduino core libraries and tools
-  # - cmake # Cross-platform make system
+  - cmake # Cross-platform make system
   # - crystal # Programming language with Ruby-like syntax
   # - diffutils # File comparison utilities
   # - direnv # Environment switcher for the shell
@@ -70,21 +75,22 @@ pkgng_packages:
   ####################
   - alacritty # GPU-accelerated terminal emulator
   - aspell # Spell checker
-  - base64 # Base64 encoding and decoding utility
+  # - base64 # Base64 encoding and decoding utility
   - bash # GNU Project's Bourne Again SHell
   # - btop # Resource monitor that shows usage and stats
   - bzip2 # Block-sorting file compressor
   - curl # Command line tool and library for transferring data with URLs
   - doas # Simple sudo replacement
-  - dsbmc-cli # Command-line client for DSBMD
-  - dsbmd # Disk and device media daemon
+  # - dsbmc-cli # Command-line client for DSBMD
+  # - dsbmd # Disk and device media daemon
   - dunst # Lightweight and customizable notification daemon
   - en-aspell # American English dictionary for aspell
   # - fd-find # Simple, fast, and user-friendly alternative to 'find'
+  - figlet # Generate text banners in various typefaces composed of ASCII characters
   # - fzf # Command-line fuzzy finder
   # - gawk # GNU version of 'awk' pattern scanning and processing language
-  - gedit # GNOME text editor
-  - gnome-keyring # GNOME password and secret manager
+  # - gedit # GNOME text editor
+  # - gnome-keyring # GNOME password and secret manager
   # - gnuplot # Command-line driven graphing utility
   # - gnuls # GNU version of 'ls' command
   # - gomuks # Matrix client for the terminal
@@ -103,6 +109,8 @@ pkgng_packages:
   - tree # Display directories as trees (with optional color/HTML output)
   - unzip # List, test, and extract compressed files in a ZIP archive
   - valgrind # Memory debugging and profiling tool
+  - xclip # Command-line interface to the X11 clipboard
+  - xdotool # Command-line X11 automation tool
   - zsh # UNIX shell (command interpreter)
 
   ####################
@@ -139,6 +147,7 @@ pkgng_packages:
   # Multimedia
   # - blender # 3D modeling, animation, rendering, and post-production
   - epdfview # Lightweight PDF document viewer using Poppler and GTK+
+  - feh # Lightweight and versatile image viewer
   - gtk-mixer # Audio mixer for GTK
   # - gimp # GNU Image Manipulation Program
   - imv # Image viewer for Wayland and X11
@@ -146,18 +155,17 @@ pkgng_packages:
   # - oxipng # PNG optimizer to reduce image file sizes
   - vlc # Media player and streaming server
 
-  # Wayland
-  - eww-wayland # ElKowar's Wacky Widgets for Wayland
-  - grim # Screenshot utility for Wayland
-  - hyprland # Dynamic tiling Wayland compositor
-  - seatd # Minimal seat management daemon
-  - swaybg # Wallpaper utility for Wayland
-  - swayidle # Idle management daemon for Wayland
-  - swaylock # Screen locker for Wayland
-  - tofi # Simple and fast launcher for Wayland
-  - wdisplays # Display configurator for Wayland
-  - wlogout # Logout menu for Wayland
-  - xwayland # X server running as a Wayland client
+  # X11/awesomeWM
+  - arandr # Simple visual front end for xrandr
+  - awesome # Highly configurable, next generation framework window manager
+  - awesome-vicious # Widgets for the awesome window manager
+  - picom # X11 compositor that may fix tearing issues
+  - xorg # X.Org X Window System
+  - xdm # X Display Manager
+  - xterm # Terminal emulator for the X Window System
+  - xinit # X Window System initializer
+  - xrandr # Primitive command line interface to RandR extension
+  - xsetroot # Root window parameter setting utility for X
 
   # Email
   # - claws-mail # Lightweight and fast email client
@@ -320,41 +328,44 @@ dotfiles_repo_version: main
 dotfiles_repo_force: true
 dotfiles_repo_local_destination: ~/src/dotfiles
 dotfiles_files:
-  - .config/Kvantum/kvantum.kvconfig # Kvantum: SVG-based theme engine for Qt
+  # - .config/Kvantum/kvantum.kvconfig # Kvantum: SVG-based theme engine for Qt
   # - .config/aria2/aria2.conf # aria2: Lightweight multi-protocol & multi-source command-line download utility
   - .config/alacritty.toml # alacritty: GPU-accelerated terminal emulator
+  - .config/awesome/rc.lua # awesomeWM: Highly configurable, next generation framework window manager
+  - .config/awesome/theme.lua # awesomeWM: Highly configurable, next generation framework window manager
   # - .config/btop/btop.conf # btop: Resource monitor that shows usage and stats
   # - .config/doom/config.el # Doom Emacs: Configuration for Emacs
   # - .config/doom/init.el # Doom Emacs: Initialization file for Emacs
   # - .config/doom/packages.el # Doom Emacs: Package configuration for Emacs
-  - .config/dorst/config.toml # dorst: Configuration management tool
-  - .config/dunst/dunstrc # dunst: Lightweight and customizable notification daemon
-  - .config/eww/eww.scss # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/eww.yuck # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-active-workspace # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-battery # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-devs # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-network # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-volume # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-window-title # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/get-workspaces # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/power-button # eww-wayland: ElKowar's Wacky Widgets for Wayland
-  - .config/eww/scripts/toggle-bt # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/dorst/config.toml # dorst: Configuration management tool
+  # - .config/dunst/dunstrc # dunst: Lightweight and customizable notification daemon
+  # - .config/eww/eww.scss # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/eww.yuck # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-active-workspace # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-battery # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-devs # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-network # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-volume # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-window-title # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/get-workspaces # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/power-button # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  # - .config/eww/scripts/toggle-bt # eww-wayland: ElKowar's Wacky Widgets for Wayland
+  - .config/fontconfig/fonts.conf # fontconfig: Font configuration and customization library
   - .config/gtk-3.0/settings.ini # GTK: GIMP Toolkit for creating graphical user interfaces
   - .config/git/config # git: Distributed version control system
-  - .config/hypr/hyprland.conf # hyprland: Dynamic tiling Wayland compositor
+  # - .config/hypr/hyprland.conf # hyprland: Dynamic tiling Wayland compositor
   - .config/mc/ini # mc: Midnight Commander, a visual file manager
   # - .config/qmk/qmk.ini # qmk: Quantum Mechanical Keyboard firmware
-  - .config/qt5ct/qt5ct.conf # qt5ct: Qt5 Configuration Tool
-  - .config/tofi/config # tofi: Simple and fast launcher for Wayland
+  # - .config/qt5ct/qt5ct.conf # qt5ct: Qt5 Configuration Tool
+  # - .config/tofi/config # tofi: Simple and fast launcher for Wayland
   # - .config/transmission/settings.json # transmission: Lightweight BitTorrent client
-  - .config/wlogout/layout # wlogout: Logout menu for Wayland
-  - .config/wlogout/style.css # wlogout: Logout menu for Wayland
+  # - .config/wlogout/layout # wlogout: Logout menu for Wayland
+  # - .config/wlogout/style.css # wlogout: Logout menu for Wayland
   - .shrc # Shell configuration file
   - .zshrc # zsh: UNIX shell (command interpreter)
   # - bin/devmode # Custom script for development mode
-  - bin/hyprstart # Custom script for starting Hyprland
-  - bin/lowpowermode # Custom script for toggling low power mode
+  # - bin/hyprstart # Custom script for starting Hyprland
+  # - bin/lowpowermode # Custom script for toggling low power mode
 
 #########################################
 # role: git_ports                       #
