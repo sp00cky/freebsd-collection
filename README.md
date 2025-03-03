@@ -24,6 +24,35 @@ See [profiles](https://charlesrocket.github.io/freebsd-collection/docsite/profil
 ```sh
 # run as user
 ansible-galaxy collection install charlesrocket.freebsd
+```
+
+This fetches the profile variables from the github repo, defined in
+'playbooks/station.yml:20', as long the profile name defined in the 
+extra variable for ansible playbooks (-e) does **not** start with a "/".
+
+```sh
 ansible-playbook charlesrocket.freebsd.station -c \
     local -i "localhost," -e "profile=bigmac"
 ```
+
+You can pass also more than one extra variable (-e) to the ansible playbook,
+if you fetch the profile variables from github.
+
+```sh
+ansible-playbook charlesrocket.freebsd.station -c \
+    local -i "localhost," -e "profile=bigmac" -e "profile_version=awesome"
+```
+
+If you want load the profile variables from a local folder (... -e "profile=/bigmac"),
+no more extra variables can be passed.
+
+  - If you pass just the foldername, all `.yml`, `.yaml` will be read and loaded.
+    ```sh
+    ansible-playbook charlesrocket.freebsd.station -c \
+        local -i "localhost," -e "profile=/bigmac"
+    ```
+  - You can pass also a specific file name instead.
+    ```sh
+    ansible-playbook charlesrocket.freebsd.station -c \
+        local -i "localhost," -e "profile=/bigmac/awesome.yml"
+    ```
