@@ -110,8 +110,6 @@ pkgng_packages:
   - tree # Display directories as trees (with optional color/HTML output)
   - unzip # List, test, and extract compressed files in a ZIP archive
   - valgrind # Memory debugging and profiling tool
-  - xclip # Command-line interface to the X11 clipboard
-  - xdotool # Command-line X11 automation tool
   - zsh # UNIX shell (command interpreter)
 
   ####################
@@ -161,8 +159,10 @@ pkgng_packages:
   - awesome # Highly configurable, next generation framework window manager
   - awesome-vicious # Widgets for the awesome window manager
   - picom # X11 compositor that may fix tearing issues
-  - xorg # X.Org X Window System
+  - xclip # Command-line interface to the X11 clipboard
   - xdm # X Display Manager
+  - xdotool # Command-line X11 automation tool
+  - xorg # X.Org X Window System
   - xterm # Terminal emulator for the X Window System
   - xinit # X Window System initializer
   - xrandr # Primitive command line interface to RandR extension
