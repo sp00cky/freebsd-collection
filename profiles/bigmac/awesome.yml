@@ -310,6 +310,12 @@ laptop: true # Laptop support (default: false)
 laptop_thinkpad: false # ThinkPad support (default: false)
 laptop_dock: false # Dock support (default: false)
 
+#################
+# role: macbook #
+#################
+macbook: true # MacBook support (default: false)
+macbook_pro_5_4: true # MacBook Pro5,4 support (default: false)
+
 ###################
 # role: tethering #
 ###################

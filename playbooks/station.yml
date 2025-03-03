@@ -76,6 +76,11 @@
       when: laptop
       tags: laptop
 
+    - role: macbook
+      become: true
+      when: macbook
+      tags: macbook
+
     - role: tethering
       become: true
       tags: tethering

@@ -1,0 +1,15 @@
+---
+argument_specs:
+  main:
+    short_description: Deploys MacBook tunings
+    description:
+      - Tasks and tunings for MacBook.
+
+    author:
+      - sp00cky
+
+    options:
+      macbook_pro_5_4:
+        description: Enable MacBook Pro 5,4 tunings.
+        type: bool
+        default: false

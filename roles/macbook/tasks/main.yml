@@ -1,0 +1,30 @@
+---
+
+- block:
+    - name: Install Broadcom BCM4322 chipset firmware bwn driver
+      community.general.pkgng:
+        state: present
+        name: bwn-firmware-kmod
+        autoremove: true
+        cached: false
+
+    - name: Ensure bwn kernel module is loaded at boot
+      lineinfile:
+        path: /boot/loader.conf
+        regexp: '^bwn_load="YES"$'
+        line: 'bwn_load="YES"'
+        state: present
+
+    - name: Check if bwn module is loaded
+      command: kldstat -n bwn
+      register: bwn_module_loaded
+      failed_when: false
+      changed_when: false
+      # ignore_errors: yes
+
+    - name: Load bwn module if not already loaded
+      command: kldload bwn
+      when: bwn_module_loaded.rc != 0
+
+  when: macbook_pro_5_4
+
