@@ -102,6 +102,7 @@ pkgng_packages:
   - libsecret # Library for storing and retrieving passwords and secrets
   # - mp3blaster # Text-based mp3 player
   # - pcsc-tools # Tools for smart cards and smart card readers
+  - micro # Modern and intuitive terminal-based text editor
   # - pv # Pipe viewer
   # - pwgen # Password generator
   - screen # Multi-screen window manager

@@ -1,8 +1,8 @@
 ---
 
 edit_on_github:
-  repository: charlesrocket/freebsd-collection
-  branch: trunk
+  repository: sp00cky/freebsd-collection
+  branch: main
   path_prefix: ''
 
 extra_links:
