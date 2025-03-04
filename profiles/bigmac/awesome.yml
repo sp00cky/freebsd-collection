@@ -316,6 +316,13 @@ laptop_dock: false # Dock support (default: false)
 macbook: true # MacBook support (default: false)
 macbook_pro_5_4: true # MacBook Pro5,4 support (default: false)
 
+#################
+# role: nvidia #
+#################
+nvidia: true # NVIDIA support (default: false)
+nvidia_340: true # NVIDIA driver version 340 (default: false)
+nvidia_340_xorg: true # NVIDIA Xorg configuration (default: false)
+
 ###################
 # role: tethering #
 ###################

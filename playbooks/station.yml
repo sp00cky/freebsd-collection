@@ -81,6 +81,11 @@
       when: macbook
       tags: macbook
 
+    - role: nvidia
+      become: true
+      when: nvidia
+      tags: nvidia
+
     - role: tethering
       become: true
       tags: tethering

@@ -1,0 +1,56 @@
+---
+- name: Gather GPU PCI bus ID
+  ansible.builtin.command: "pciconf -lv | grep -B3 VGA | awk '/vgapci/ {print $1}'"
+  register: gpu_pci_info
+
+- name: Print GPU PCI bus ID
+  ansible.builtin.debug:
+    msg: "{{ gpu_pci_info.stdout }}"
+
+- block:
+    - name: Install NVIDIA GPU driver version 340
+      community.general.pkgng:
+        state: present
+        name: nvidia-driver-340
+        autoremove: true
+        cached: false
+
+    - name: Load NVIDIA kernel module
+      community.general.sysrc:
+        name: nvidia_load
+        state: present
+        value: YES
+        path: /boot/loader.conf
+
+    - name: Add NVIDIA settings to rc.conf
+      community.general.sysrc:
+        name: kld_list
+        state: present
+        value: nvidia
+        path: /etc/rc.conf
+
+  when: nvidia_340
+
+- block:
+    - name: Create Xorg configuration directory
+      file:
+        path: /usr/local/etc/X11/xorg.conf.d
+        state: directory
+        mode: '0755'
+
+    - name: Configure Xorg for NVIDIA driver
+      template:
+        src: 20-nvidia.conf.j2
+        dest: /usr/local/etc/X11/xorg.conf.d/20-nvidia.conf
+        mode: '0644'
+
+    - name: Install NVIDIA X configuration tool
+      # Tool to manipulate X configuration files for the NVidia driver
+      community.general.pkgng:
+        state: present
+        name: x11/nvidia-xconfig
+        autoremove: true
+        cached: false
+
+  when: nvidia_340_xorg
+

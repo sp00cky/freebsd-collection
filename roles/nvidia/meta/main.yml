@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: sp00cky
+  description: Tasks for NVIDIA GPU / Xorg configuration
+  role_name: nvidia
+  license: "MIT"
+  min_ansible_version: "2.9"
+  platforms:
+    - name: FreeBSD
+      versions:
+        - all
+  galaxy_tags:
+    - nvidia
+    - xorg
+    - x11
