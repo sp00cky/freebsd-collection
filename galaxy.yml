@@ -1,12 +1,13 @@
 ---
 
-namespace: charlesrocket
+namespace: sp00cky
 name: freebsd
-version: 1.12.3
+version: 1.0.0
 readme: README.md
 description: FreeBSD collection for workstations/servers
 authors:
   - charlesrocket
+  - sp00cky
 
 license:
   - MIT

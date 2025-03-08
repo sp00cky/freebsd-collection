@@ -1,11 +1,11 @@
 ---
 - name: Gather GPU PCI bus ID
-  ansible.builtin.command: "pciconf -lv | grep -B1 'vendor=0x10de' | grep 'vgapci' | sed -nE 's/.*pci0:([0-9:]+):.*/\1/p' | head -n1"
-  register: gpu_bus_id
+  ansible.builtin.command: "pciconf -lv | grep -B3 VGA | awk '/vgapci/ {print $1}'"
+  register: gpu_pci_info
 
 - name: Print GPU PCI bus ID
   ansible.builtin.debug:
-    msg: "{{ gpu_bus_id.stdout }}"
+    msg: "{{ gpu_pci_info.stdout }}"
 
 - block:
     - name: Install NVIDIA GPU driver version 340
@@ -15,25 +15,18 @@
         autoremove: true
         cached: false
 
-    # - name: Load NVIDIA kernel module
-    #   community.general.sysrc:
-    #     name: nvidia_load
-    #     state: present
-    #     value: YES
-    #     path: /boot/loader.conf
+    - name: Load NVIDIA kernel module
+      community.general.sysrc:
+        name: nvidia_load
+        state: present
+        value: YES
+        path: /boot/loader.conf
 
-    # - name: Add NVIDIA settings to rc.conf
-    #   community.general.sysrc:
-    #     name: kld_list
-    #     state: present
-    #     value: nvidia
-    #     path: /etc/rc.conf
-
-    - name: Append nvidia-driver/module to kld_list
+    - name: Add NVIDIA settings to rc.conf
       community.general.sysrc:
         name: kld_list
         state: present
-        value: 'nvidia nvidia-modeset'
+        value: nvidia
         path: /etc/rc.conf
 
   when: nvidia_340

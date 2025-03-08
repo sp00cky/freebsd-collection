@@ -1,0 +1,20 @@
+---
+argument_specs:
+  main:
+    short_description: Deploys NVIDIA GPU drivers
+    description:
+      - Tasks to install and configure NVIDIA GPU with Xorg.
+
+    author:
+      - sp00cky
+
+    options:
+      nvidia_340:
+        description: Install nvidia 340 driver and Xorg config.
+        type: bool
+        default: false
+
+      nvidia_340_xorg:
+        description: Install Xorg configuration for nvidia 340 driver.
+        type: bool
+        default: false

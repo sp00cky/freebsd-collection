@@ -1,5 +1,16 @@
 Section "Device"
-	Identifier "Card0"
-	Driver     "nvidia"
-	BusID	  "{{ gpu_pci_info }}"
+    Identifier     "NVIDIA Card"
+    Driver         "nvidia"
+    VendorName     "NVIDIA"
+    BusID          "PCI:{{ gpu_bus_id }}"
+    Option         "UseNvidiaKernelModule" "true"
+EndSection
+
+Section "Module"
+    Load           "glx"
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "NVIDIA Card"
 EndSection

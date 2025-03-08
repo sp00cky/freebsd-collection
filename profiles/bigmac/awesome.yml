@@ -11,6 +11,10 @@ pkgng_packages:
   ####################
   # Themes and Fonts #
   ####################
+  ## Bare minimum
+  - dejavu # DejaVu family of fonts
+  - liberation-fonts-ttf # Liberation family of fonts
+  ## Optional
   - adwaita-icon-theme # GNOME icon theme
   - adwaita-qt5 # Adwaita theme for Qt5 applications
   - apl385 # APL385 Unicode font
@@ -105,6 +109,7 @@ pkgng_packages:
   - micro # Modern and intuitive terminal-based text editor
   # - pv # Pipe viewer
   # - pwgen # Password generator
+  # - sakura # Terminal emulator based on GTK and VTE (requires gtk3)
   - screen # Multi-screen window manager
   # - tmux # Terminal multiplexer
   - tree # Display directories as trees (with optional color/HTML output)
@@ -128,7 +133,9 @@ pkgng_packages:
   # - rkhunter # Rootkit Hunter scans for rootkits, backdoors, and local exploits
   # - zmap # Network scanner for Internet-wide network studies
 
-  # Networking
+  ####################
+  # Networking       #
+  ####################
   # - aria2 # Download utility supporting HTTP(S), FTP, BitTorrent, and Metalink
   # - ffuf # Fast web fuzzer written in Go
   # - netcat # Network utility for reading from and writing to network connections
@@ -136,17 +143,20 @@ pkgng_packages:
   - wget # Retrieve files from the web using HTTP and FTP
   - whois # Whois client
 
-  # Web
+  ####################
+  # Web              #
+  ####################
   # - chromium # Web browser from Google
   - firefox-esr # Web browser from Mozilla
   # - lynx # Text-based web browser
   # - filezilla # Fast and reliable cross-platform FTP, FTPS, and SFTP client
   # - transmission # Lightweight BitTorrent client
 
-  # Multimedia
+  ####################
+  # Multimedia       #
+  ####################
   # - blender # 3D modeling, animation, rendering, and post-production
   - epdfview # Lightweight PDF document viewer using Poppler and GTK+
-  - feh # Lightweight and versatile image viewer
   - gtk-mixer # Audio mixer for GTK
   # - gimp # GNU Image Manipulation Program
   - imv # Image viewer for Wayland and X11
@@ -154,29 +164,49 @@ pkgng_packages:
   # - oxipng # PNG optimizer to reduce image file sizes
   - vlc # Media player and streaming server
 
-  # X11/awesomeWM
-  - arandr # Simple visual front end for xrandr
-  - awesome # Highly configurable, next generation framework window manager
-  - awesome-vicious # Widgets for the awesome window manager
-  - picom # X11 compositor that may fix tearing issues
-  - xclip # Command-line interface to the X11 clipboard
-  - xdm # X Display Manager
-  - xdotool # Command-line X11 automation tool
-  - xorg # X.Org X Window System
-  - xterm # Terminal emulator for the X Window System
+  ####################
+  # X11/awesomeWM    #
+  ####################
+  ## Bare minimum
+  - xorg # X.Org X11 server metaport
   - xinit # X Window System initializer
+  - xterm # Terminal emulator for the X Window System (fallback system terminal)
   - xrandr # Primitive command line interface to RandR extension
-  - xsetroot # Root window parameter setting utility for X
+  - xclip # Essential for CLI-to-GUI clipboard workflows
+  - xf86-input-keyboard # X.Org keyboard input driver
+  - xf86-input-mouse # X.Org mouse input driver
+  - awesome # Highly configurable, next generation framework window manager
+  - feh # Lightweight and versatile image viewer (required by awesomeWM for setting wallpaper)
+  - picom # X11 compositor that may fix tearing issues, add shadows, and transparency
+  - slim # Simple login manager
+  # - lightdm # Lightweight display manager (try this, if slim doesn't work)
+  # - xdm # X Display Manager
+  # - xsetroot # Basic background setter (only basic colors) / only use if you dont't use feh, nitrogen, or picom
+  
+  ## Touchpad/Touchscreen (recommended on laptops)
+  - x11/libinput # Library to handle input devices like Touchpad/Touchscreen
+  
+  ## Optional
+  - arandr # Simple visual front end for xrandr
+  # - awesome-vicious # Widgets for the awesome window manager (https://github.com/vicious-widgets/vicious)
+  # - nitrogen # Background browser and setter for X windows (alternative to feh but heavier) 
+  # - xdotool # script window actions or create advanced keybindings (optional, maybe useful for awesomeWM)
 
-  # Email
+  ####################
+  # Email            #
+  ####################
   # - claws-mail # Lightweight and fast email client
   # - claws-mail-pgp # PGP plugin for Claws Mail
 
-  # Filemanager
+  ####################
+  # Filemanager      #
+  ####################
   - thunar # Modern file manager for Xfce
   - mc # Midnight Commander, a visual file manager
 
-  # Filesystem
+  ####################
+  # Filesystem       #
+  ####################
   - exfat-utils # Utilities for exFAT file system
   - fusefs-exfat # FUSE driver for exFAT file system
   - fusefs-ext2 # FUSE driver for ext2 file system
@@ -185,7 +215,9 @@ pkgng_packages:
   - fusefs-ntfs # FUSE driver for NTFS file system
   - fusefs-simple-mtpfs # FUSE driver for MTP devices
 
-  # Miscellaneous
+  ####################
+  # Miscellaneous    #
+  ####################
   - consolekit2 # Framework for defining and tracking users, login sessions, and seats
   # - seahorse # GNOME application for managing encryption keys
   - sndio # Small audio and MIDI framework
